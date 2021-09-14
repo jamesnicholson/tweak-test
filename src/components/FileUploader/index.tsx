@@ -119,16 +119,12 @@ const UploadImage: FC<IUploadImageProps> = () => {
                             e.target.files ? handleChangeFile(e.target.files[0]) : null
                         } /> 
                 </ChangeBackgroundWrapper>
-               
             </PreviewWrapper>
             :
             <UploadWrapper onClick={triggerInput}>
                 <CameraWrapper>
-                        <GiPhotoCamera />
-
+                    <GiPhotoCamera />
                 </CameraWrapper>
-
-               
                 <input ref={inputRef} type="file" accept=".png,.jpg" onChange={e => 
                     e.target.files ? handleChangeFile(e.target.files[0]) : null
                 } /> 

@@ -10,6 +10,8 @@
     "@types/node": "^12.20.24",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
+    "fabric": "^4.6.0",
+    "fabricjs-react": "^1.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
@@ -43,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@types/fabric": "^4.5.3",
     "@types/styled-components": "^5.1.14"
   }
 }
