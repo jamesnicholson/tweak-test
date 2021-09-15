@@ -76,6 +76,7 @@ const ChangeBackgroundWrapper = styled.div`
 `
 const UploadImage: FC<IUploadImageProps> = () => {
     const {setImage, state} = useContext(AppContext);
+    const {image} = state
     const [picture, setPicture] = useState<string>("");
     const inputCBRef =  useRef<any>(null);
     const inputRef =  useRef<any>(null);
@@ -88,8 +89,6 @@ const UploadImage: FC<IUploadImageProps> = () => {
         image.onload = function() {
             setImage(content);
         };
-       setPicture(content);
-   
     }
     const handleError = (e: any) => {
         console.log(e)
@@ -112,17 +111,7 @@ const UploadImage: FC<IUploadImageProps> = () => {
     }
 
   return <Wrapper>
-        {picture ? 
-            <PreviewWrapper>
-                <PreviewImage src={picture} />
-                <ChangeBackgroundWrapper>
-                     <ChangeBackground onClick={triggerCBInput}>Change Image</ChangeBackground>
-                     <input ref={inputCBRef} type="file" accept=".png,.jpg" onChange={e => 
-                            e.target.files ? handleChangeFile(e.target.files[0]) : null
-                        } /> 
-                </ChangeBackgroundWrapper>
-            </PreviewWrapper>
-            :
+        {
             <UploadWrapper onClick={triggerInput}>
                 <CameraWrapper>
                     <GiPhotoCamera />

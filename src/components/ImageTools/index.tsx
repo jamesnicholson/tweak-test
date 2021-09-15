@@ -15,17 +15,38 @@ const ImageTools: FC<IImageTools> = () => {
     const onAddRectangle = () => {
         editor?.addRectangle();
     };
-    const AddImage = () => {
-        fabric.Image.fromURL('my_image.png', function(oImg) { 
-            editor?.canvas.add(oImg);
-        })
-    };
+
+    const filters = {
+        brightness: new fabric.Image.filters.Brightness(),
+        saturation: new fabric.Image.filters.Saturation(),
+        contrast: new fabric.Image.filters.Contrast(),
+      }
+      
     useEffect(() =>{ 
-        console.log(image);
+
+        
+        if(image){
+            editor?.canvas.clear()
+            const img = new Image();
+            img.crossOrigin = "";
+            new Promise(res => {
+              img.onload = res;
+              img.src = image;
+            });
+            const image2 = new fabric.Image(img);
+            
+            if(image2){
+                var filter = new fabric.Image.filters.Brightness({
+                    brightness: 0.54
+                });
+                image2.filters?.push(filter);
+                image2.applyFilters();
+                editor?.canvas.add(image2)
+            }
+        }
     },[image]);
     return(
         <div>
-            <div onClick={() => AddImage()}>Add Image</div>
             <button onClick={onAddCircle}>Add circle</button>
             <button onClick={onAddRectangle}>Add Rectangle</button>
             <div style={{border: '1px solid red'}}>
