@@ -1,6 +1,7 @@
-import { useState, FC, useContext, useRef, useEffect } from "react";
+import { useState, FC, useContext, useRef } from "react";
 import styled from 'styled-components';
 import { GiPhotoCamera } from "react-icons/gi";
+import AppContext from '../../store/context'
 interface IUploadImageProps {
 
 };
@@ -74,6 +75,7 @@ const ChangeBackgroundWrapper = styled.div`
    }
 `
 const UploadImage: FC<IUploadImageProps> = () => {
+    const {setImage, state} = useContext(AppContext);
     const [picture, setPicture] = useState<string>("");
     const inputCBRef =  useRef<any>(null);
     const inputRef =  useRef<any>(null);
@@ -84,7 +86,7 @@ const UploadImage: FC<IUploadImageProps> = () => {
         var image = new Image();
         image.src = content;
         image.onload = function() {
-            
+            setImage(content);
         };
        setPicture(content);
    
